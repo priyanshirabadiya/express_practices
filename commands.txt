@@ -1,0 +1,20 @@
+first download this all depenedecies to create simple server
+
+npm init
+
+npm i 
+
+npm i express
+
+npm i nodemon
+
+npm i -D morgan 
+
+In this first lecture start server and apply get method to show opened server
+code see in app.js file
+
+nodemon => for auto refresh page
+morgan => Morgan is an HTTP request logger middleware for Node.js. It simplifies the process of logging requests to your application, providing valuable insights into your application's traffic and behavior.
+simple log data about started server 
+
+
