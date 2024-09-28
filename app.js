@@ -1,36 +1,33 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
-const fs = require('fs');
-const data = fs.readFileSync('./dummy.json', 'utf-8');
+app.use(morgan("dev"));
+
+const myFun = (req, res, next) => {
+    if (req.query.age > 18) {
+        console.log("Success");
+        res.send("<h1>Your age is greater than 18.</h1>");
+    } else {
+        next();
+    }
+};
+
+// To apply in directly params: // http://localhost:1122/age/15
+// app.use("/age/:age", myFun);
+
+// app.get("/age/:age", (req, res) => {
+//     res.write("<h1>Hello your age is less than 18.</h1>");
+//     res.end();
+// })
+
+// To apply in query params
+app.use("/", myFun);
 
 app.get("/", (req, res) => {
-    res.setHeader("Content-type", "text/html");
-    res.write("<h1>This is server.</h1>");
+    res.write("<h1>Hello your age is less than 18.</h1>");
     res.end();
-})
+});
 
-app.get("/data", (req, res) => {
-    res.setHeader("Content-type", "application/json")
-    res.write(data);
-    res.end();
-})
-
-app.post("/data", (req, res) => {
-    res.setHeader("Content-type", "application/json")
-    res.write(data);
-    res.end();
-})
-
-app.patch("/", (req, res) => {
-    res.send("This is patch method.");
-    res.end();
-})
-
-app.delete("/", (req, res) => {
-    res.send("This is delete method.");
-    res.end();
-})
-
-app.listen(1122, (req, res) => {
-    console.log("Server at http://localhost:1122");
-})
+app.listen(1122, () => {
+    console.log("Server start at http://localhost:1122");
+});

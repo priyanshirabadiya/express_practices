@@ -1,20 +1,53 @@
-first download this all depenedecies to create simple server
+Middleware => 
+middleware is functions are functions that have access to the request object , the response object and the next function
+in application request-response cycle.
+Middleware functions can execute following tasks:
+=>execute any code.
+=>Make the changes to the request and response cycle.
+=>End the request-response cycle
+=>Call the next middleware in stack.
 
-npm init
+Types of middleware 
+1. application level middleware
+2. router level middleware
+3. Error-handling middleware
+4. Built-in middleware
+5. Third-party middleware
 
-npm i 
+1. application middleware as we saw in this lecture
 
-npm i express
+2. router level middleware => Will be see in next lectures for handling routers
 
-npm i nodemon
+3. Error-handling middleware => To handle errors
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
-npm i -D morgan 
+4. Built-in middleware
+    I. static middleware
+    II. express json
+    III. express urlencoded
 
-In this first lecture start server and apply get method to show opened server
-code see in app.js file
+I.Static Middleware
+To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
+app.use(express.static('public'))
 
-nodemon => for auto refresh page
-morgan => Morgan is an HTTP request logger middleware for Node.js. It simplifies the process of logging requests to your application, providing valuable insights into your application's traffic and behavior.
-simple log data about started server 
+5. Third party middleware = cookie-parser
+
+Lec - 3 : is about how to use params and query params
+
+To pass data in only in params then 
+for that add url like this => http://localhost:1122/age/15
+app.use("/age/:age", myFun);
+
+To pass data through query params then
+your url will be this => http://localhost:1122?age=58   
+you don't need to set it just add data in query params section in postman
+needs simple data
+app.use("/", myFun);
+
+
+
 
 
