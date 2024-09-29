@@ -2,5 +2,3 @@ Lec 7 : is about crud operation using router
 
 what is difference between put and patch 
 => HTTP PUT request is used to replace and update the entire resource or document while the PATCH request only updates the specific parts of that document
-
-
