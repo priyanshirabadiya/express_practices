@@ -1,6 +1,21 @@
-Lec 5 : is about crud operation
+Lec 6 : is about crud operation = update 
 
-how to push data into exsisting data and get all users
-and and get single user  
 
+// some definations for splice operation
+when we want to remove or add elements in middle than we can use splice method
+The splice() method adds and/or removes array elements.
+The splice() method overwrites the original array.
+
+Ex:
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+// At position 2, add "Lemon" and "Kiwi":
+fruits.splice(2, 0, "Lemon", "Kiwi");
+// opt : banana , Orange , Lemon , Kiwi , Apple , Mango
+
+// At position 2, add "Lemon" and "Kiwi" and overhide apple so remove apple:
+fruits.splice(2, 1, "Lemon", "Kiwi");
+// opt : banana , Orange , Lemon , Kiwi , Mango
+
+
+delete by using splice but don't add new elements on it.
 
