@@ -36,3 +36,29 @@ exports.getSingleUser = async (req, res) => {
     }
 }
 
+exports.updateUser = async (req, res) => {
+    try {
+        let user = await User.findById(req.query._id);
+        if (!user) {
+            res.send("User not exists...");
+        }
+        user = await User.findByIdAndUpdate({ _id: user.id }, { $set: req.body }, { new: true });
+        res.send({ user, message: "User updated successfully..." });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try {
+        let user = await User.findById(req.query._id);
+        if (!user) {
+            res.send("User does not exist...");
+        }
+        // simple delete
+        user = await User.findOneAndDelete({ _id: user.id });
+        res.send({ user, message: "User deleted successfully..." });
+    } catch (error) {
+        console.log(error);
+    }
+}
