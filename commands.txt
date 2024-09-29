@@ -35,19 +35,40 @@ app.use(express.static('public'))
 
 5. Third party middleware = cookie-parser
 
-Lec - 3 : is about how to use params and query params
+Lec - 4 : is about error handling middleware 
 
-To pass data in only in params then 
-for that add url like this => http://localhost:1122/age/15
-app.use("/age/:age", myFun);
+how to console or handle error when something is broke in code.
+simply if you don't use and error handling middleware than it is not that that is it don't show error 
+but it wll not show user defined if use don't use error handling middleware than it will give error like this in browser
 
-To pass data through query params then
-your url will be this => http://localhost:1122?age=58   
-you don't need to set it just add data in query params section in postman
-needs simple data
-app.use("/", myFun);
+ReferenceError: res is not defined
+    at D:\Express_Practices\app.js:7:5
+    at Layer.handle [as handle_request] (D:\Express_Practices\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\Express_Practices\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\Express_Practices\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\Express_Practices\node_modules\express\lib\router\layer.js:95:5)
+    at D:\Express_Practices\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\Express_Practices\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\Express_Practices\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (D:\Express_Practices\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (D:\Express_Practices\node_modules\express\lib\router\layer.js:95:5)
 
 
 
+but if you use error handling middleware than it will give user defined error like this
+Some this broke...
+
+
+
+II. Built-in middleware
+
+urlencoded
+=> add data in postman x-www-form-urlencoded form it will send data cilent side to serverside  
+When there is a HTTP POST request from the client with content type application/x-www-form-urlencoded, this middleware parses the data and populates the req.body object with key-value pairs.
+
+
+III. static middleware
+
+When we want to print anything from public or any static directory from in folder then static middleware is used.
 
 
