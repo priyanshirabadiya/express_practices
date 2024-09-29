@@ -1,21 +1,6 @@
-Lec 6 : is about crud operation = update 
+Lec 7 : is about crud operation using router  
 
+what is difference between put and patch 
+=> HTTP PUT request is used to replace and update the entire resource or document while the PATCH request only updates the specific parts of that document
 
-// some definations for splice operation
-when we want to remove or add elements in middle than we can use splice method
-The splice() method adds and/or removes array elements.
-The splice() method overwrites the original array.
-
-Ex:
-const fruits = ["Banana", "Orange", "Apple", "Mango"];
-// At position 2, add "Lemon" and "Kiwi":
-fruits.splice(2, 0, "Lemon", "Kiwi");
-// opt : banana , Orange , Lemon , Kiwi , Apple , Mango
-
-// At position 2, add "Lemon" and "Kiwi" and overhide apple so remove apple:
-fruits.splice(2, 1, "Lemon", "Kiwi");
-// opt : banana , Orange , Lemon , Kiwi , Mango
-
-
-delete by using splice but don't add new elements on it.
 
