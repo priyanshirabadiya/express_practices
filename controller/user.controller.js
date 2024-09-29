@@ -1,67 +1,33 @@
 const User = require('../model/user.model');
+const bcrypt = require('bcrypt');
 
-exports.getAllUsers = async (req, res) => {
+exports.addUser = async (req, res) => {
     try {
-        let users = await User.find();
-        res.send(users);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-exports.addNewUser = async (req, res) => {
-    try {
-        let user = await User.findOne({ email: req.body.email });
+        let user = await User.findOne({ email: req.body.email, isDelete: false });
         if (user) {
-            return res.status(400).json({ message: "User already exist.." });
+            res.send({ message: "User already exists..." });
         }
-        const addUser = await User.create(req.body);
-        res.status(200).json({ addUser, message: "User added successfully..." });
+        let hashpassword = await bcrypt.hash(req.body.password, 10);
+        console.log(hashpassword);
+        user = await User.create({ ...req.body, password: hashpassword });
+        res.send({ user, message: "Added..." });
     } catch (error) {
         console.log(error);
+        res.send("Internal server error...");
     }
 }
 
-exports.getSingleUser = async (req, res) => {
+exports.loginUser = async (req, res) => {
     try {
-        // let user = await User.findOne({ firstName: req.query.firstName });
-        // let user = await User.findOne({ _id: req.query._userId });
-        let user = await User.findById(req.query._userId);
+        let user = await User.findOne({ email: req.body.email, isDelete: false });
         if (!user) {
-            res.send("User not found...");
+            res.send("User dosen't exist...");
         }
-        res.status(200).json(user);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-exports.updateUser = async (req, res) => {
-    try {
-        let user = await User.findById(req.query._id);
-        if (!user) {
-            res.send("User not exists...");
+        let comparepass = await bcrypt.compare(req.body.password, user.password);
+        if (!comparepass) {
+            res.send("Password or email does not match..");
         }
-        user = await User.findByIdAndUpdate({ _id: user.id }, { $set: req.body }, { new: true });
-        res.send({ user, message: "User updated successfully..." });
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-exports.deleteUser = async (req, res) => {
-    try {
-        let user = await User.findById(req.query._id);
-        if (!user) {
-            res.send("User does not exist...");
-        }
-        // simple delete
-        // user = await User.findOneAndDelete({ _id: user.id });
-        // res.send({ user, message: "User deleted successfully..." });
-
-        // soft delete
-        user = await User.findByIdAndUpdate({ _id: user.id }, { isDelete: true }, { new: true })
-        res.status(200).send({ user, message: "User deleted successfully..." });
+        res.status(200).send({ user, message: "User login success..." });
     } catch (error) {
         console.log(error);
     }
