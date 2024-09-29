@@ -56,8 +56,12 @@ exports.deleteUser = async (req, res) => {
             res.send("User does not exist...");
         }
         // simple delete
-        user = await User.findOneAndDelete({ _id: user.id });
-        res.send({ user, message: "User deleted successfully..." });
+        // user = await User.findOneAndDelete({ _id: user.id });
+        // res.send({ user, message: "User deleted successfully..." });
+
+        // soft delete
+        user = await User.findByIdAndUpdate({ _id: user.id }, { isDelete: true }, { new: true })
+        res.status(200).send({ user, message: "User deleted successfully..." });
     } catch (error) {
         console.log(error);
     }
