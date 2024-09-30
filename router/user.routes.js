@@ -1,31 +1,9 @@
-const express = require("express");
-const userrouter = express.Router();
+const express = require('express');
+const { registerUser } = require('../controller/user.controller');
+const userRouter = express.Router();
 
-const {
-    addUser,
-    loginUser,
-    getAll,
-    getSingleUser,
-    updateUser,
-    deleteUser,
-    getSpecialUser
-} = require("../controller/user.controller");
+userRouter.post('/register', registerUser);
 
-const { verifyToken } = require("../helpers/verifyToken");
-const { upload } = require("../helpers/imageUpload");
+module.exports = userRouter;
 
-userrouter.post("/register", upload.single('imageUpload'), addUser);
 
-userrouter.get("/login", loginUser);
-
-userrouter.get("/all", getAll);
-
-userrouter.get("/getspecial",getSpecialUser)
-
-userrouter.get("/single", verifyToken, getSingleUser);
-
-userrouter.put("/update", verifyToken, updateUser);
-
-userrouter.delete("/delete", verifyToken, deleteUser);
-
-module.exports = userrouter;

@@ -1,17 +1,7 @@
-Lec 15 : is about add images in profile and etc.
+Lec 17
 
-Use enctype in html form attribute
-=> The enctype attribute specifies how the form-data should be encoded when submitting it to the server.
-Note: The enctype attribute can be used only if method="post".
-ex: <form action="/action_page_binary.asp" method="post" enctype="multipart/form-data"></form>
-
-
-app.use('/public/images', express.static(path.join(__dirname, 'public/images')));
-add this to show image files on browser
-
-
-helpers code directly get from npm multer
-then set it as middleware
+1.common mistake is that not require dotenv in app.js file
+2.common mistake to use express.json() middleware
 
 
 
