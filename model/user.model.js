@@ -5,7 +5,8 @@ const userSchema = mongoose.Schema({
     lastName: String,
     email: {
         type: String,
-        qnique: true
+        qnique: true,
+        require : true
     },
     password: {
         type: String
@@ -13,6 +14,10 @@ const userSchema = mongoose.Schema({
     age: {
         type: Number
     },
+    profileImage: {
+        type: String
+    },
+    hobbies: [{ type: String }],
     address: {
         line1: String,
         line2: String,
@@ -30,3 +35,4 @@ const userSchema = mongoose.Schema({
     })
 
 module.exports = mongoose.model("Usersmanupulation", userSchema);
+

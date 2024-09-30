@@ -6,6 +6,7 @@ require('dotenv').config();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userrouter = require('./router/user.routes');
+const path = require('path');
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Database established success..."))
@@ -13,6 +14,8 @@ mongoose.connect(process.env.MONGO_URL)
     
 app.use(morgan('dev'));
 app.use(express.json());
+// this is for open image file in browser
+// app.use('/public/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use("/user", userrouter);
 

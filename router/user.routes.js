@@ -11,8 +11,9 @@ const {
 } = require("../controller/user.controller");
 
 const { verifyToken } = require("../helpers/verifyToken");
+const { upload } = require("../helpers/imageUpload");
 
-userrouter.post("/register", addUser);
+userrouter.post("/register", upload.single('imageUpload'), addUser);
 
 userrouter.get("/login", loginUser);
 

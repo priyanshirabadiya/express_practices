@@ -1,4 +1,17 @@
-Lec 7 : is about crud operation using router  
+Lec 15 : is about add images in profile and etc.
 
-what is difference between put and patch 
-=> HTTP PUT request is used to replace and update the entire resource or document while the PATCH request only updates the specific parts of that document
+Use enctype in html form attribute
+=> The enctype attribute specifies how the form-data should be encoded when submitting it to the server.
+Note: The enctype attribute can be used only if method="post".
+ex: <form action="/action_page_binary.asp" method="post" enctype="multipart/form-data"></form>
+
+
+app.use('/public/images', express.static(path.join(__dirname, 'public/images')));
+add this to show image files on browser
+
+
+helpers code directly get from npm multer
+then set it as middleware
+
+
+

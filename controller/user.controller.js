@@ -11,6 +11,8 @@ exports.getAll = async (req, res) => {
     }
 }
 
+// ------------- Lec - 15 add image on profile
+
 exports.addUser = async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email, isDelete: false });
@@ -18,14 +20,29 @@ exports.addUser = async (req, res) => {
             res.send({ message: "User already exists..." });
         }
         let hashpassword = await bcrypt.hash(req.body.password, 10);
-        console.log(hashpassword);
-        user = await User.create({ ...req.body, password: hashpassword });
+        // console.log(hashpassword);
+        let imagePath = '';
+        if (req.file) {
+            console.log('Uploaded File:', req.file);
+            console.log("Path is:", req.file.path);
+            imagePath = req.file.path.replace(/\\/g, "/");
+            console.log("new path", imagePath);
+        } else {
+            console.log('No file uploaded');
+        }
+        user = await User.create({
+            ...req.body,
+            password: hashpassword,
+            profileImage: imagePath
+        });
         res.send({ user, message: "Added..." });
     } catch (error) {
         console.log(error);
         res.send("Internal server error...");
     }
 }
+
+// -----------------------------------------
 
 exports.loginUser = async (req, res) => {
     try {
@@ -83,3 +100,10 @@ exports.deleteUser = async (req, res) => {
         res.send("Internal server error..");
     }
 }
+
+
+
+
+
+
+
