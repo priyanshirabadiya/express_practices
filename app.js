@@ -2,11 +2,12 @@
 
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const userrouter = require('./router/user.routes')
+const userrouter = require('./router/user.routes');
 
-mongoose.connect("mongodb://127.0.0.1:27017/exUser")
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Database established success..."))
     .catch((err) => console.log(err))
     
