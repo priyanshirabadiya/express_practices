@@ -11,8 +11,6 @@ exports.getAll = async (req, res) => {
     }
 }
 
-// ------------- Lec - 15 add image on profile
-
 exports.addUser = async (req, res) => {
     try {
         let user = await User.findOne({ email: req.body.email, isDelete: false });
@@ -41,8 +39,6 @@ exports.addUser = async (req, res) => {
         res.send("Internal server error...");
     }
 }
-
-// -----------------------------------------
 
 exports.loginUser = async (req, res) => {
     try {
@@ -101,7 +97,20 @@ exports.deleteUser = async (req, res) => {
     }
 }
 
+// ---------------------- 
 
+exports.getSpecialUser = async (req, res) => {
+    try {
+        let user = await User.findOne({ email: req.body.email, isDelete: false });
+        if (!user) {
+            res.send("User not found..");
+        }
+        res.render('user.ejs', { user });
+    } catch (error) {
+        console.log(error);
+        res.send("Internal server error..");
+    }
+}
 
 
 

@@ -7,7 +7,8 @@ const {
     getAll,
     getSingleUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getSpecialUser
 } = require("../controller/user.controller");
 
 const { verifyToken } = require("../helpers/verifyToken");
@@ -18,6 +19,8 @@ userrouter.post("/register", upload.single('imageUpload'), addUser);
 userrouter.get("/login", loginUser);
 
 userrouter.get("/all", getAll);
+
+userrouter.get("/getspecial",getSpecialUser)
 
 userrouter.get("/single", verifyToken, getSingleUser);
 

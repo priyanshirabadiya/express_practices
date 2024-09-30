@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const userrouter = require('./router/user.routes');
 const path = require('path');
+const ejs = require('ejs');
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Database established success..."))
