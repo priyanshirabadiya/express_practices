@@ -16,7 +16,6 @@ exports.registerUser = async (req, res) => {
         res.send({ Message: Messages.INTERNAL_SERVER_ERR });
     }
 }
-
 exports.loginUser = async (req,res) => {
     try {
         
