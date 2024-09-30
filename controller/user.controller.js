@@ -55,3 +55,31 @@ exports.getSingleUser = async (req, res) => {
         res.send("Internal server error");
     }
 }
+
+exports.updateUser = async (req, res) => {
+    try {
+        let user = req.user;
+        if (!user) {
+            res.send("User not found..");
+        }
+        user = await User.findByIdAndUpdate(user._id, { $set: req.body }, { new: true });
+        res.send({ message: "User updated successfully.." });
+    } catch (error) {
+        console.log(error);
+        res.send("Internal server error..");
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try {
+        let user = req.user;
+        if (!user) {
+            res.send("User not found");
+        }
+        let updateduser = await User.findByIdAndUpdate(user._id, { isDelete: true }, { new: true });
+        res.send({ updateduser, message: "User deleted success.." });
+    } catch (error) {
+        console.log(error);
+        res.send("Internal server error..");
+    }
+}

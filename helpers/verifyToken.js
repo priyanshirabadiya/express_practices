@@ -12,10 +12,10 @@ exports.verifyToken = async (req, res, next) => {
         let token = authorization.split(" ")[1];
         console.log(token);
         let { userId } = await jwt.verify(token, process.env.JWT_SECREATE)
-        console.log(userId);
+        // console.log(userId);
         
         let user = await User.findOne({ _id: userId, isDelete: false })
-        console.log(user);
+        // console.log(user);
         
         if (!user) {
             res.status(404).send("User not found...");
