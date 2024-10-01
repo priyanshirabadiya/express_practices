@@ -14,7 +14,7 @@ app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello this is priyanshi.");
-})
+});
 
 app.listen(port, () => {
     console.log(`server start at http://localhost:${port} `);
